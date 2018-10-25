@@ -31,11 +31,14 @@ public class NettyClient {
 
         Bootstrap bootstrap = new Bootstrap();
         bootstrap
+                // 1。工作线程模型
                 .group(workerGroup)
+                // 2。制定io类型为NIO
                 .channel(NioSocketChannel.class)
                 .option(ChannelOption.CONNECT_TIMEOUT_MILLIS, 5000)
                 .option(ChannelOption.SO_KEEPALIVE, true)
                 .option(ChannelOption.TCP_NODELAY, true)
+                // 3。处理连接逻辑
                 .handler(new ChannelInitializer<SocketChannel>() {
                     @Override
                     public void initChannel(SocketChannel ch) {
@@ -43,6 +46,7 @@ public class NettyClient {
                     }
                 });
 
+        // 4。建立连接
         connect(bootstrap, HOST, PORT, MAX_RETRY);
     }
 
