@@ -32,6 +32,7 @@ public class NettyServer {
          *      option()  给每条连接设置属性以外还可以设置服务端 channel 的属性 如 sc_backlog 表示系统临时存放完成 三次握手的请求的队列的最大长度
          *
          */
+        // ServerBootstrap 启动引导类
         final ServerBootstrap serverBootstrap = new ServerBootstrap();
         serverBootstrap
                 .group(boosGroup, workerGroup)
