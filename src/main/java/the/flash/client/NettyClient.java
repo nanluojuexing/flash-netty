@@ -22,6 +22,10 @@ public class NettyClient {
     public static void main(String[] args) {
         NioEventLoopGroup workerGroup = new NioEventLoopGroup();
 
+        /**
+         *  ch.pipeline() --> 返回连接相关的逻辑处理器
+         *  addLast() --> 添加逻辑处理器，逻辑处理器是客户端连接成功后，向服务端写数据
+         */
         Bootstrap bootstrap = new Bootstrap();
         bootstrap
                 .group(workerGroup)

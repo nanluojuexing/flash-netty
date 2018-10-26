@@ -13,6 +13,11 @@ import java.util.Date;
  * @date 2018/08/04 06:23.
  */
 public class FirstClientHandler extends ChannelInboundHandlerAdapter {
+
+    /**
+     * 客户端连接成功后会调用 channelActive() 方法 ，方法内 向服务端写数据
+     * @param ctx
+     */
     @Override
     public void channelActive(ChannelHandlerContext ctx) {
         System.out.println(new Date() + ": 客户端写出数据");
@@ -24,6 +29,11 @@ public class FirstClientHandler extends ChannelInboundHandlerAdapter {
         ctx.channel().writeAndFlush(buffer);
     }
 
+    /**
+     *  ctx.alloc() 获取到 byteBuf 的内存管理器
+     * @param ctx
+     * @return
+     */
     private ByteBuf getByteBuf(ChannelHandlerContext ctx) {
         byte[] bytes = "你好，闪电侠!".getBytes(Charset.forName("utf-8"));
 
