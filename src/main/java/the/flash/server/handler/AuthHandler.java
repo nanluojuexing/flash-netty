@@ -11,6 +11,7 @@ public class AuthHandler extends ChannelInboundHandlerAdapter {
         if (!LoginUtil.hasLogin(ctx.channel())) {
             ctx.channel().close();
         } else {
+            //实现逻辑的删除 this 指的是 authHandler
             ctx.pipeline().remove(this);
             super.channelRead(ctx, msg);
         }
